@@ -1,0 +1,19 @@
+{
+	"name": "cmsgears/widget-form",
+	"description": "The Form Widget for CMSGears. It provide options to generate forms stored in db.",
+	"homepage": "http://www.cmsgears.org",
+	"type": "package",
+	"keywords": [ "yii", "yii2", "cmsgears", "widget", "form" ],
+	"license": "GPLv3",
+	"support": {
+		"resources": "http://www.cmsgears.org"
+	},
+	"autoload": {
+		"psr-4": {
+			"cmsgears\\widgets\\form\\": ""
+		}
+	},
+    "require": {
+        "cmsgears/module-forms": "*"
+    }
+}
