@@ -11,7 +11,11 @@ class BaseForm extends Widget {
 
 	// Public Variables --------------------
 
-    public $options 		= [];
+    public $form;
+
+	public $model;
+	
+	public $activeForm;
 
 	// Constructor and Initialisation ------------------------------
 
