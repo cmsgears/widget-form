@@ -2,21 +2,16 @@
 namespace cmsgears\widgets\form;
 
 use \Yii;
-use yii\base\Widget;
 use yii\helpers\Html;
 
-class BaseForm extends Widget {
+class BaseForm extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
 
 	// Public Variables --------------------
 
     public $form;
-
-	public $model;
 	
-	public $activeForm;
-
 	// Constructor and Initialisation ------------------------------
 
 	// yii\base\Object

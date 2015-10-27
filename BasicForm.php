@@ -4,11 +4,22 @@ namespace cmsgears\widgets\form;
 // Yii Imports
 use \Yii;
 use yii\helpers\Html;
+use yii\captcha\Captcha;
 
 // CMG Imports
 use cmsgears\forms\common\models\entities\FormField;
 
 class BasicForm extends BaseForm {
+
+	// Variables ---------------------------------------------------
+
+	// Public Variables --------------------
+
+	public $model;
+
+	public $formActions;
+
+	public $activeForm;
 
 	// Instance Methods --------------------------------------------
 
@@ -55,6 +66,22 @@ class BasicForm extends BaseForm {
 			}
 
 			echo $fieldHtml;
+		}
+
+		if( $this->form->captcha ) {
+
+			$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+
+			echo $captchaHtml;
+		}
+		
+		if( !isset( $this->formActions ) ) {
+
+			echo "<div class='frm-actions'><input type='submit' value='Submit' /></div>";
+		}
+		else {
+			
+			echo $this->formActions;
 		}
     }
 }
