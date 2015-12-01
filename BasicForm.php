@@ -69,20 +69,20 @@ class BasicForm extends BaseForm {
 	
 				echo $fieldHtml;
 			}
-	
+
 			if( $this->form->captcha ) {
-	
+
 				$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
-	
+
 				echo $captchaHtml;
 			}
-			
+
 			if( !isset( $this->formActions ) ) {
 	
 				echo "<div class='frm-actions'><input type='submit' value='Submit' /></div>";
 			}
 			else {
-				
+
 				echo $this->formActions;
 			}
 		}

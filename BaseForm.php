@@ -11,7 +11,7 @@ class BaseForm extends \cmsgears\core\common\base\Widget {
 	// Public Variables --------------------
 
     public $form;
-	
+
 	// Constructor and Initialisation ------------------------------
 
 	// yii\base\Object
