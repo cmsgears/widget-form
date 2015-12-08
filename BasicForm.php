@@ -9,6 +9,8 @@ use yii\captcha\Captcha;
 // CMG Imports
 use cmsgears\forms\common\models\entities\FormField;
 
+use cmsgears\core\common\utilities\FormUtil;
+
 class BasicForm extends BaseForm {
 
 	// Variables ---------------------------------------------------
@@ -21,6 +23,8 @@ class BasicForm extends BaseForm {
 
 	public $activeForm;
 
+	public $showLabel	= true;
+
 	// Instance Methods --------------------------------------------
 
 	// BasicForm
@@ -30,45 +34,10 @@ class BasicForm extends BaseForm {
 		if( isset( $this->form ) && $this->form->active ) {
 
 			$model		= $this->model;
-			$fields 	= $this->model->fields;
 			$activeForm	= $this->activeForm;
-	
-			foreach ( $fields as $key => $field ) {
-	
-				$fieldHtml	= null;
-	
-				if( isset( $field->options ) ) {
-	
-					$field->options	= json_decode( $field->options, true );
-				}
-				else {
-	
-					$field->options	= [];
-				}
-	
-				switch( $field->type ) {
-	
-					case FormField::TYPE_TEXT: {
-	
-						$fieldHtml = $activeForm->field( $model, $key )->textInput( $field->options );
-	
-						break;
-					}
-					case FormField::TYPE_TEXTAREA: {
-	
-						$fieldHtml = $activeForm->field( $model, $key )->textArea( $field->options );
-	
-						break;
-					}
-				}
-	
-				if( !isset( $field->label ) ) {
-	
-					$fieldHtml->label( false );
-				}
-	
-				echo $fieldHtml;
-			}
+			$fieldsHtml	= FormUtil::getFieldsHtml( $activeForm, $this->model, [ 'label' => $this->showLabel ] );
+
+			echo $fieldsHtml; 
 
 			if( $this->form->captcha ) {
 
