@@ -17,31 +17,45 @@ class BasicForm extends BaseForm {
 
 	// Public Variables --------------------
 
+	/**
+	 * Form model to be rendered by Active Form.
+	 */
 	public $model;
 
+	/**
+	 * It can be used to override form actions to change submit button value or add additional buttons.
+	 */
 	public $formActions;
 
+	/**
+	 * Active Form to be used to render form.
+	 */
 	public $activeForm;
-
-	public $showLabel	= true;
 
 	// Instance Methods --------------------------------------------
 
 	// BasicForm
 
     public function renderForm() {
-		
+
 		if( isset( $this->form ) && $this->form->active ) {
 
 			$model		= $this->model;
 			$activeForm	= $this->activeForm;
 			$fieldsHtml	= FormUtil::getFieldsHtml( $activeForm, $this->model, [ 'label' => $this->showLabel ] );
 
-			echo $fieldsHtml; 
+			echo $fieldsHtml;
 
 			if( $this->form->captcha ) {
 
-				$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+				if( $this->showLabel ) {
+
+					$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+				}
+				else {
+
+					$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+				}
 
 				echo $captchaHtml;
 			}
@@ -56,7 +70,7 @@ class BasicForm extends BaseForm {
 			}
 		}
 		else {
-			
+
 			echo "<div class='warning'>Form submission is disabled by site admin.</div>";	
 		}
     }
