@@ -11,6 +11,8 @@ class BaseForm extends \cmsgears\core\common\base\Widget {
 	// Public Variables --------------------
 
     public $form;
+	public $model;
+
 	public $showLabel	= true;
 
 	// Constructor and Initialisation ------------------------------

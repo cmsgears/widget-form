@@ -18,11 +18,6 @@ class BasicForm extends BaseForm {
 	// Public Variables --------------------
 
 	/**
-	 * Form model to be rendered by Active Form.
-	 */
-	public $model;
-
-	/**
 	 * It can be used to override form actions to change submit button value or add additional buttons.
 	 */
 	public $formActions;
