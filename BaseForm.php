@@ -12,6 +12,7 @@ class BaseForm extends \cmsgears\core\common\base\Widget {
 
     public $form;
 	public $model;
+	public $modelName;
 
 	public $showLabel	= true;
 
