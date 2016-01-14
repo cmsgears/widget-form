@@ -31,12 +31,12 @@ class BaseForm extends \cmsgears\core\common\base\Widget {
 
     public function run() {
 
-        return $this->renderForm();
+        return $this->renderWidget();
     }
 
 	// BaseForm
 
-    public function renderForm() {
+    public function renderWidget( $config = [] ) {
 
     }
 }

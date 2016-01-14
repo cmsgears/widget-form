@@ -31,7 +31,7 @@ class BasicForm extends BaseForm {
 
 	// BasicForm
 
-    public function renderForm() {
+    public function renderWidget( $config = [] ) {
 
 		if( isset( $this->form ) && $this->form->active ) {
 
