@@ -53,5 +53,3 @@ abstract class BaseForm extends \cmsgears\core\common\base\Widget {
 
 	// BaseForm ------------------------------
 }
-
-?>
