@@ -1,41 +1,55 @@
 <?php
 namespace cmsgears\widgets\form;
 
+// Yii Imports
 use \Yii;
 use yii\helpers\Html;
 
-class BaseForm extends \cmsgears\core\common\base\Widget {
+// CMG Imports
+use cmsgears\core\common\config\CoreGlobal;
+
+abstract class BaseForm extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
 
-	// Public Variables --------------------
+	// Globals -------------------------------
+
+	// Constants --------------
+
+	// Public -----------------
+
+	// Protected --------------
+
+	// Variables -----------------------------
+
+	// Public -----------------
 
     public $form;
+
+	public $model;
+	public $modelName;
+
 	public $showLabel	= true;
+
+	// Protected --------------
+
+	// Private ----------------
+
+	// Traits ------------------------------------------------------
 
 	// Constructor and Initialisation ------------------------------
 
-	// yii\base\Object
+	// Instance methods --------------------------------------------
 
-    public function init() {
+	// Yii interfaces ------------------------
 
-        parent::init();
-    }
+	// Yii parent classes --------------------
 
-	// Instance Methods --------------------------------------------
+	// yii\base\Widget --------
 
-	// yii\base\Widget
+	// CMG interfaces ------------------------
 
-    public function run() {
+	// CMG parent classes --------------------
 
-        return $this->renderForm();
-    }
-
-	// BaseForm
-
-    public function renderForm() {
-
-    }
+	// BaseForm ------------------------------
 }
-
-?>

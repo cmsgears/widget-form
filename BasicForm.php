@@ -18,11 +18,6 @@ class BasicForm extends BaseForm {
 	// Public Variables --------------------
 
 	/**
-	 * Form model to be rendered by Active Form.
-	 */
-	public $model;
-
-	/**
 	 * It can be used to override form actions to change submit button value or add additional buttons.
 	 */
 	public $formActions;
@@ -32,11 +27,13 @@ class BasicForm extends BaseForm {
 	 */
 	public $activeForm;
 
+	public $captchaAction	= 'form/captcha';
+
 	// Instance Methods --------------------------------------------
 
 	// BasicForm
 
-    public function renderForm() {
+    public function renderWidget( $config = [] ) {
 
 		if( isset( $this->form ) && $this->form->active ) {
 
@@ -50,18 +47,18 @@ class BasicForm extends BaseForm {
 
 				if( $this->showLabel ) {
 
-					$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+					$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*' ] ] );
 				}
 				else {
 
-					$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+					$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*' ] ] );
 				}
 
 				echo $captchaHtml;
 			}
 
 			if( !isset( $this->formActions ) ) {
-	
+
 				echo "<div class='frm-actions'><input type='submit' value='Submit' /></div>";
 			}
 			else {
@@ -71,9 +68,7 @@ class BasicForm extends BaseForm {
 		}
 		else {
 
-			echo "<div class='warning'>Form submission is disabled by site admin.</div>";	
+			echo "<div class='warning'>Form submission is disabled by site admin.</div>";
 		}
     }
 }
-
-?>
