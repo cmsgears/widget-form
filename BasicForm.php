@@ -27,6 +27,8 @@ class BasicForm extends BaseForm {
 	 */
 	public $activeForm;
 
+	public $captchaTemplate	= true;
+
 	public $captchaAction	= 'form/captcha';
 
 	// Instance Methods --------------------------------------------
@@ -47,11 +49,18 @@ class BasicForm extends BaseForm {
 
 				if( $this->showLabel ) {
 
-					$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+					if( $this->captchaTemplate ) {
+
+						$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ], 'template' => "<div class='left element-60'><div>{image}</div><div>{input}</div></div>" ] );
+					}
+					else {
+
+						$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
+					}
 				}
 				else {
 
-					$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*' ] ] );
+					$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
 				}
 
 				echo $captchaHtml;
