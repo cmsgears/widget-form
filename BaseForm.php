@@ -1,14 +1,23 @@
 <?php
+/**
+ * This file is part of CMSGears Framework. Please view License file distributed
+ * with the source code for license details.
+ *
+ * @link https://www.cmsgears.org/
+ * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
+ */
+
 namespace cmsgears\widgets\form;
 
-// Yii Imports
-use \Yii;
-use yii\helpers\Html;
-
 // CMG Imports
-use cmsgears\core\common\config\CoreGlobal;
+use cmsgears\core\common\base\Widget;
 
-abstract class BaseForm extends \cmsgears\core\common\base\Widget {
+/**
+ * BaseForm is the base class for dynamic forms.
+ *
+ * @since 1.0.0
+ */
+abstract class BaseForm extends Widget {
 
 	// Variables ---------------------------------------------------
 
@@ -24,12 +33,33 @@ abstract class BaseForm extends \cmsgears\core\common\base\Widget {
 
 	// Public -----------------
 
-    public $form;
+	/**
+	 * Form model for which form has to be submitted.
+	 *
+	 * @var \cmsgears\core\common\models\resources\Form
+	 */
+    public $model;
 
-	public $model;
-	public $modelName;
+	/**
+	 * The form model to be submitted for the form.
+	 *
+	 * @var \cmsgears\core\common\models\forms\GenericForm
+	 */
+	public $form;
 
-	public $showLabel	= true;
+	/**
+	 * Model name used to collect form fields.
+	 *
+	 * @var string
+	 */
+	public $formName;
+
+	/**
+	 * Checks whether labels are enabled for the form.
+	 *
+	 * @var boolean
+	 */
+	public $label = true;
 
 	// Protected --------------
 
@@ -52,4 +82,5 @@ abstract class BaseForm extends \cmsgears\core\common\base\Widget {
 	// CMG parent classes --------------------
 
 	// BaseForm ------------------------------
+
 }

@@ -1,16 +1,25 @@
 <?php
+/**
+ * This file is part of CMSGears Framework. Please view License file distributed
+ * with the source code for license details.
+ *
+ * @link https://www.cmsgears.org/
+ * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
+ */
+
 namespace cmsgears\widgets\form;
 
 // Yii Imports
-use \Yii;
-use yii\helpers\Html;
 use yii\captcha\Captcha;
 
 // CMG Imports
-use cmsgears\forms\common\models\entities\FormField;
-
 use cmsgears\core\common\utilities\FormUtil;
 
+/**
+ * The BasicForm used to submit form in traditional way must be wrapped by [[yii\widgets\ActiveForm]].
+ *
+ * @since 1.0.0
+ */
 class BasicForm extends BaseForm {
 
 	// Variables ---------------------------------------------------
@@ -18,18 +27,32 @@ class BasicForm extends BaseForm {
 	// Public Variables --------------------
 
 	/**
-	 * It can be used to override form actions to change submit button value or add additional buttons.
-	 */
-	public $formActions;
-
-	/**
 	 * Active Form to be used to render form.
+	 *
+	 * @var \yii\widgets\ActiveForm
 	 */
 	public $activeForm;
 
-	public $captchaTemplate	= true;
+	/**
+	 * Flag to check whether captcha has to be wrapped.
+	 *
+	 * @var boolean
+	 */
+	public $wrapCaptcha	= false;
 
-	public $captchaAction	= 'form/captcha';
+	/**
+	 * Flag to check whether form actions has to be wrapped.
+	 *
+	 * @var boolean
+	 */
+	public $wrapActions	= false;
+
+	/**
+	 * The default action to listen for captcha request.
+	 *
+	 * @var string
+	 */
+	public $captchaAction = '/forms/form/captcha';
 
 	// Instance Methods --------------------------------------------
 
@@ -37,47 +60,36 @@ class BasicForm extends BaseForm {
 
     public function renderWidget( $config = [] ) {
 
-		if( isset( $this->form ) && $this->form->active ) {
+		$fieldsHtml		= null;
+		$captchaHtml	= null;
 
-			$model		= $this->model;
+		if( isset( $this->model ) && $this->model->isActive() ) {
+
+			$form		= $this->form;
 			$activeForm	= $this->activeForm;
-			$fieldsHtml	= FormUtil::getFieldsHtml( $activeForm, $this->model, [ 'label' => $this->showLabel ] );
+			$fieldsHtml	= FormUtil::getFieldsHtml( $activeForm, $form, [ 'label' => $this->label ] );
 
-			echo $fieldsHtml;
+			if( $this->model->captcha ) {
 
-			if( $this->form->captcha ) {
+				if( $this->label ) {
 
-				if( $this->showLabel ) {
-
-					if( $this->captchaTemplate ) {
-
-						$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ], 'template' => "<div class='left element-60'><div>{image}</div><div>{input}</div></div>" ] );
-					}
-					else {
-
-						$captchaHtml = $activeForm->field( $model, 'captcha' )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
-					}
+					$captchaHtml = $activeForm->field( $form, 'captcha' )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
 				}
 				else {
 
-					$captchaHtml = $activeForm->field( $model, 'captcha' )->label( false )->widget( Captcha::classname(), [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
+					$captchaHtml = $activeForm->field( $form, 'captcha' )->label( false )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
 				}
-
-				echo $captchaHtml;
-			}
-
-			if( !isset( $this->formActions ) ) {
-
-				echo "<div class='frm-actions'><input type='submit' value='Submit' /></div>";
-			}
-			else {
-
-				echo $this->formActions;
 			}
 		}
-		else {
 
-			echo "<div class='warning'>Form submission is disabled by site admin.</div>";
+		$widgetHtml = $this->render( $this->template, [ 'widget' => $this, 'fieldsHtml' => $fieldsHtml, 'captchaHtml' => $captchaHtml ] );
+
+		if( $this->wrap ) {
+
+			return Html::tag( $this->wrapper, $widgetHtml, $this->options );
 		}
+
+		return $widgetHtml;
     }
+
 }
