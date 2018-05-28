@@ -16,15 +16,25 @@ use yii\captcha\Captcha;
 use cmsgears\core\common\utilities\FormUtil;
 
 /**
- * The BasicForm used to submit form in traditional way must be wrapped by [[yii\widgets\ActiveForm]].
+ * The BasicFormWidget used to submit form in traditional way must be wrapped by [[yii\widgets\ActiveForm]].
  *
  * @since 1.0.0
  */
-class BasicForm extends BaseForm {
+class BasicFormWidget extends BaseForm {
 
 	// Variables ---------------------------------------------------
 
-	// Public Variables --------------------
+	// Globals -------------------------------
+
+	// Constants --------------
+
+	// Public -----------------
+
+	// Protected --------------
+
+	// Variables -----------------------------
+
+	// Public -----------------
 
 	/**
 	 * Active Form to be used to render form.
@@ -54,9 +64,27 @@ class BasicForm extends BaseForm {
 	 */
 	public $captchaAction = '/forms/form/captcha';
 
-	// Instance Methods --------------------------------------------
+	// Protected --------------
 
-	// BasicForm
+	// Private ----------------
+
+	// Traits ------------------------------------------------------
+
+	// Constructor and Initialisation ------------------------------
+
+	// Instance methods --------------------------------------------
+
+	// Yii interfaces ------------------------
+
+	// Yii parent classes --------------------
+
+	// yii\base\Widget --------
+
+	// CMG interfaces ------------------------
+
+	// CMG parent classes --------------------
+
+	// BasicFormWidget -----------------------
 
     public function renderWidget( $config = [] ) {
 
@@ -93,3 +121,4 @@ class BasicForm extends BaseForm {
     }
 
 }
+
