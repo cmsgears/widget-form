@@ -58,6 +58,13 @@ class BasicFormWidget extends BaseForm {
 	public $wrapActions	= false;
 
 	/**
+	 * Flag to check whether form labels and fields need split.
+	 *
+	 * @var boolean
+	 */
+	public $split4060 = true;
+
+	/**
 	 * The default action to listen for captcha request.
 	 *
 	 * @var string
@@ -95,11 +102,11 @@ class BasicFormWidget extends BaseForm {
 
 			$form		= $this->form;
 			$activeForm	= $this->activeForm;
-			$fieldsHtml	= FormUtil::getFieldsHtml( $activeForm, $form, [ 'label' => $this->label ] );
+			$fieldsHtml	= FormUtil::getFieldsHtml( $activeForm, $form, [ 'label' => $this->labels ] );
 
 			if( $this->model->captcha ) {
 
-				if( $this->label ) {
+				if( $this->labels ) {
 
 					$captchaHtml = $activeForm->field( $form, 'captcha' )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
 				}
@@ -121,4 +128,3 @@ class BasicFormWidget extends BaseForm {
     }
 
 }
-

@@ -55,11 +55,11 @@ abstract class BaseForm extends Widget {
 	public $formName;
 
 	/**
-	 * Checks whether labels are enabled for the form.
+	 * Flag to check whether form labels are displayed.
 	 *
 	 * @var boolean
 	 */
-	public $label = true;
+	public $labels = true;
 
 	// Protected --------------
 
