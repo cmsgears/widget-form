@@ -4,7 +4,7 @@
 	<?= $fieldsHtml ?>
 
 	<?php if( $widget->wrapCaptcha ) { ?>
-		<div class="captcha-wrap clear clearfix">
+		<div class="captcha-wrap clear clearfix clear relative">
 			<?= $captchaHtml ?>
 		</div>
 	<?php } else { ?>

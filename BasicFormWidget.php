@@ -108,11 +108,11 @@ class BasicFormWidget extends BaseForm {
 
 				if( $this->labels ) {
 
-					$captchaHtml = $activeForm->field( $form, 'captcha' )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
+					$captchaHtml = $activeForm->field( $form, 'captcha' )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha *', 'class' =>'captcha' ] ] );
 				}
 				else {
 
-					$captchaHtml = $activeForm->field( $form, 'captcha' )->label( false )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha*', 'class' =>'captcha' ] ] );
+					$captchaHtml = $activeForm->field( $form, 'captcha' )->label( false )->widget( Captcha::class, [ 'captchaAction' => $this->captchaAction, 'options' => [ 'placeholder' => 'Captcha *', 'class' =>'captcha' ] ] );
 				}
 			}
 		}
