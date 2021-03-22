@@ -4,7 +4,7 @@
 	<?= $fieldsHtml ?>
 
 	<?php if( $widget->wrapCaptcha ) { ?>
-		<div class="frm-captcha clear clearfix">
+		<div class="captcha-wrap clear clearfix clear relative">
 			<?= $captchaHtml ?>
 		</div>
 	<?php } else { ?>
@@ -13,11 +13,11 @@
 
 	<?php if( $widget->wrapActions ) { ?>
 		<div class="frm-actions clear clearfix">
-			<input type="submit" value="Submit" />
+			<input class="frm-element-medium" type="submit" value="Submit" />
 		</div>
 	<?php } else { ?>
 		<div class="frm-actions">
-			<input type="submit" value="Submit" />
+			<input class="frm-element-medium" type="submit" value="Submit" />
 		</div>
 	<?php } ?>
 </div>
