@@ -55,6 +55,11 @@ abstract class BaseForm extends Widget {
 	public $formName;
 
 	/**
+	 * Html options to be used for wrapper.
+	 */
+	public $formOptions = [ 'class' => 'form' ];
+
+	/**
 	 * Flag to check whether form labels are displayed.
 	 *
 	 * @var boolean
